@@ -202,8 +202,7 @@ int isNotEqual(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  int result = (~x + ~x);
-  return (result << 4) + result;
+  return (x >> ((n << 2) + (n << 2))) & 0xFF;
 }
 /*
  * copyLSB - set all bits of result to least significant bit of x
@@ -213,7 +212,7 @@ int getByte(int x, int n) {
  *   Rating: 2
  */
 int copyLSB(int x) {
-  return 2;
+  return ~(x & 0x1) + 1;
 }
 /*
  * logicalShift - shift x to the right by n, using a logical shift
