@@ -1,7 +1,8 @@
 /*
  * CS:APP Data Lab
  *
- * <Please put your name and userid here>
+ * Juan Zamudio - jzamudio
+ * Edwin Villafane Hernandez - evillafanehernandez
  *
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -202,7 +203,7 @@ int isNotEqual(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  return (x >> ((n << 2) + (n << 2))) & 0xFF;
+  return (x >> (n << 3)) & 0xFF;
 }
 /*
  * copyLSB - set all bits of result to least significant bit of x
@@ -223,7 +224,8 @@ int copyLSB(int x) {
  *   Rating: 3
  */
 int logicalShift(int x, int n) {
-  return 2;
+  int result = (x >> n);
+  return;
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -254,7 +256,7 @@ int bang(int x) {
  *   Rating: 2
  */
 int leastBitPos(int x) {
-  return 2;
+  return (~x + 1) & x ;
 }
 /*
  * TMax - return maximum two's complement integer
@@ -263,7 +265,7 @@ int leastBitPos(int x) {
  *   Rating: 1
  */
 int tmax(void) {
-  return 2;
+  return ~(1 << 31);
 }
 /*
  * isNonNegative - return 1 if x >= 0, return 0 otherwise
@@ -273,7 +275,7 @@ int tmax(void) {
  *   Rating: 3
  */
 int isNonNegative(int x) {
-  return 2;
+  return (x >> 31) + 1;
 }
 /*
  * isGreater - if x > y  then return 1, else return 0
@@ -294,7 +296,7 @@ int isGreater(int x, int y) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+    return x >> n + 1;
 }
 /*
  * absVal - absolute value of x
