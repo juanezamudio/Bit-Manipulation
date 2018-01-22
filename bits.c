@@ -224,8 +224,7 @@ int copyLSB(int x) {
  *   Rating: 3
  */
 int logicalShift(int x, int n) {
-  int result = (x >> n);
-  return;
+  return 2;
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -296,7 +295,7 @@ int isGreater(int x, int y) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return x >> n + 1;
+    return 2;
 }
 /*
  * absVal - absolute value of x
@@ -307,7 +306,8 @@ int divpwr2(int x, int n) {
  *   Rating: 4
  */
 int absVal(int x) {
-  return 2;
+  int result = x >> 31;
+  return (result + x) ^ result;
 }
 /*
  * addOK - Determine if can compute x+y without overflow
