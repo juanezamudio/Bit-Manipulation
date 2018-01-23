@@ -224,7 +224,10 @@ int copyLSB(int x) {
  *   Rating: 3
  */
 int logicalShift(int x, int n) {
-  return 2;
+  int tmin = 1 << 31;
+  int shift_x = x >> n;
+
+  return shift_x ^ (((x & tmin) >> n) << 1);
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -302,7 +305,10 @@ int isGreater(int x, int y) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+   int shift_x = (1 << n) + ~0;
+   int sign_x = (x >> 31) & shift_x;
+
+   return (x + sign_x) >> n;
 }
 /*
  * absVal - absolute value of x
