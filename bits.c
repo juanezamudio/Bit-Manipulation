@@ -244,7 +244,7 @@ int bitCount(int x) {
  *   Rating: 4
  */
 int bang(int x) {
-  return 2;
+  return (((~x + 1) | x) >> 31) + 1;
 }
 /*
  * leastBitPos - return a mask that marks the position of the
@@ -284,7 +284,14 @@ int isNonNegative(int x) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  return 2;
+  int shift_x = x >> 31;
+  int shift_y = y >> 31;
+  
+  int add_sign = (x + ~y) >> 31;
+  int sub_signs = ((shift_x ^ shift_y) & !shift_x);
+  int eq_signs = (!(shift_x ^ shift_y)) & !add_sign;
+
+  return sub_signs | eq_signs;
 }
 /*
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
@@ -318,5 +325,9 @@ int absVal(int x) {
  *   Rating: 3
  */
 int addOK(int x, int y) {
-  return 2;
+  int result = x + y;
+  int shift_x = x >> 31;
+  int shift_y = y >> 31;
+  int shift_res = result >> 31;
+  return !!((shift_x ^ shift_y) | (!(shift_x ^ shift_res) & !(shift_y ^ shift_res)));
 }
