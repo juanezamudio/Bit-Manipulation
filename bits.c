@@ -237,7 +237,9 @@ int logicalShift(int x, int n) {
  *   Rating: 4
  */
 int bitCount(int x) {
-  return 2;
+  int shift_left = x << 1;
+  int shift_right = x >> 1;
+  return (shift_left & shift_right) + 1;
 }
 /*
  * bang - Compute !x without using !
