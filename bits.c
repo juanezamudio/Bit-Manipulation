@@ -203,6 +203,9 @@ int isNotEqual(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
+  // In order to get a specific byte we have to shift
+  // to the right (n << 3) or (n^3) which is 8 and we &
+  // it by 1111 1111 to get the value of the byte
   return (x >> (n << 3)) & 0xFF;
 }
 /*
@@ -238,17 +241,17 @@ int logicalShift(int x, int n) {
  */
 int bitCount(int x) {
   int mask = 1 | (1 << 8) | (1 << 16) | (1 << 24);
-  int sum = (x & mask);
+  int total = (x & mask);
 
-  sum = sum + ((x >> 1) & mask);
-  sum = sum + ((x >> 2) & mask);
-  sum = sum + ((x >> 3) & mask);
-  sum = sum + ((x >> 4) & mask);
-  sum = sum + ((x >> 5) & mask);
-  sum = sum + ((x >> 6) & mask);
-  sum = sum + ((x >> 7) & mask);
+  total += ((x >> 1) & mask);
+  total += ((x >> 2) & mask);
+  total += ((x >> 3) & mask);
+  total += ((x >> 4) & mask);
+  total += ((x >> 5) & mask);
+  total += ((x >> 6) & mask);
+  total += ((x >> 7) & mask);
 
-  return (sum & 0xFF) + ((sum >> 8) & 0xFF) + ((sum >> 16) & 0xFF) + ((sum >> 24) & 0xFF);
+  return (total & 0xFF) + ((total >> 8) & 0xFF) + ((total >> 16) & 0xFF) + ((total >> 24) & 0xFF);
 }
 /*
  * bang - Compute !x without using !
