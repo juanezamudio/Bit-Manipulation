@@ -237,9 +237,18 @@ int logicalShift(int x, int n) {
  *   Rating: 4
  */
 int bitCount(int x) {
-  int shift_left = x << 1;
-  int shift_right = x >> 1;
-  return (shift_left & shift_right) + 1;
+  int mask = 1 | (1 << 8) | (1 << 16) | (1 << 24);
+  int sum = (x & mask);
+
+  sum = sum + ((x >> 1) & mask);
+  sum = sum + ((x >> 2) & mask);
+  sum = sum + ((x >> 3) & mask);
+  sum = sum + ((x >> 4) & mask);
+  sum = sum + ((x >> 5) & mask);
+  sum = sum + ((x >> 6) & mask);
+  sum = sum + ((x >> 7) & mask);
+
+  return (sum & 0xFF) + ((sum >> 8) & 0xFF) + ((sum >> 16) & 0xFF) + ((sum >> 24) & 0xFF);
 }
 /*
  * bang - Compute !x without using !
